@@ -1,5 +1,7 @@
 package shop.domain
 
+import io.circe.{Decoder, Encoder}
+import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.estatico.newtype.macros.newtype
 
 import java.util.UUID
@@ -13,5 +15,8 @@ object category {
       id: CategoryId,
       name: CategoryName
   )
+
+  implicit val encodeCategory: Encoder[Category] = deriveEncoder[Category]
+  implicit val decodeCategory: Decoder[Category] = deriveDecoder[Category]
 
 }

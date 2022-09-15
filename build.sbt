@@ -16,8 +16,8 @@ lazy val root = (project in file("."))
       "org.typelevel" %% "cats-effect" % "3.3.12",
       "org.typelevel" %% "cats-mtl" % "1.2.0",
       "com.github.cb372" %% "cats-retry" % "3.1.0",
-      "org.typelevel" %% "log4cats-core"    % log4catsV,  // Only if you want to Support Any Backend
-      "org.typelevel" %% "log4cats-slf4j"   % log4catsV,
+      "org.typelevel" %% "log4cats-core" % log4catsV, // Only if you want to Support Any Backend
+      "org.typelevel" %% "log4cats-slf4j" % log4catsV,
       "org.typelevel" %% "squants" % "1.6.0",
       "co.fs2" %% "fs2-core" % "3.0.3",
       "dev.optics" %% "monocle-core" % monocleCoreV,
@@ -28,7 +28,16 @@ lazy val root = (project in file("."))
       "tf.tofu" %% "derevo-cats" % derevoV,
       "tf.tofu" %% "derevo-cats-tagless" % derevoV,
       "tf.tofu" %% "derevo-circe-magnolia" % derevoV,
-      "tf.tofu" %% "tofu-core-higher-kind" % "0.10.2"
+      "tf.tofu" %% "tofu-core-higher-kind" % "0.10.2",
+      "org.http4s" %% "http4s-core" % http4sVersion,
+      "org.http4s" %% "http4s-dsl" % http4sVersion,
+      "org.http4s" %% "http4s-server" % http4sVersion,
+      "org.http4s" %% "http4s-client" % http4sVersion,
+      "org.http4s" %% "http4s-circe" % http4sVersion,
+      "io.circe" %% "circe-core" % circeVersion,
+      "io.circe" %% "circe-generic" % circeVersion,
+      "io.circe" %% "circe-parser" % circeVersion,
+      "io.circe" %% "circe-refined" % circeVersion
     ),
     scalacOptions ++= Seq(
       "-Ymacro-annotations",
@@ -36,7 +45,9 @@ lazy val root = (project in file("."))
     )
   )
 
+val circeVersion = "0.14.1"
 val derevoV = "0.12.5"
+val http4sVersion = "0.23.15"
 val log4catsV = "2.3.2"
 val monocleCoreV = "3.0.0"
 val refinedV = "0.9.25"

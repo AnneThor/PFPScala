@@ -37,7 +37,8 @@ lazy val root = (project in file("."))
       "io.circe" %% "circe-core" % circeVersion,
       "io.circe" %% "circe-generic" % circeVersion,
       "io.circe" %% "circe-parser" % circeVersion,
-      "io.circe" %% "circe-refined" % circeVersion
+      "io.circe" %% "circe-refined" % circeVersion,
+      "dev.profunktor" %% "http4s-jwt-auth" % "1.0.0"
     ),
     scalacOptions ++= Seq(
       "-Ymacro-annotations",

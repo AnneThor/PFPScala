@@ -2,7 +2,6 @@ package shop.domain
 
 import cats.Show
 
-
 sealed trait Retriable
 
 object Retriable {
@@ -11,7 +10,7 @@ object Retriable {
 
   implicit val showRetriable: Show[Retriable] = Show.show {
     case _: Payments => "Payments"
-    case _: Orders => "Orders"
+    case _: Orders   => "Orders"
   }
 
 }

@@ -1,19 +1,18 @@
 package shop.programs
 
 import cats.effect.Temporal
-import retry.{RetryDetails, RetryPolicy, retryingOnAllErrors}
+import retry.{retryingOnAllErrors, RetryDetails, RetryPolicy}
 import org.typelevel.log4cats.Logger
 import retry.RetryDetails.{GivingUp, WillDelayAndRetry}
 import shop.domain.Retriable
 import cats.syntax.show._
 
-
 trait Retry[F[_]] {
 
   def retry[A](
-                policy: RetryPolicy[F],
-                retriable: Retriable
-              )(fa: F[A]): F[A]
+      policy: RetryPolicy[F],
+      retriable: Retriable
+  )(fa: F[A]): F[A]
 
 }
 
@@ -23,13 +22,13 @@ object Retry {
   implicit def forLoggerTemporal[F[_]: Logger: Temporal]: Retry[F] =
     new Retry[F] {
       def retry[A](
-                  policy: RetryPolicy[F],
-                  retriable: Retriable
-                  )(fa: F[A]): F[A] = {
+          policy: RetryPolicy[F],
+          retriable: Retriable
+      )(fa: F[A]): F[A] = {
         def onError(
-                   e: Throwable,
-                   details: RetryDetails
-                   ): F[Unit] =
+            e: Throwable,
+            details: RetryDetails
+        ): F[Unit] =
           details match {
             case WillDelayAndRetry(_, retriesSoFar, _) =>
               Logger[F].error(
@@ -45,5 +44,3 @@ object Retry {
       }
     }
 }
-
-

@@ -1,3 +1,8 @@
 package shop.http.routes
 
-case class BrandRoutes()
+import cats.Monad
+import shop.services.Brands
+
+final case class BrandRoutes[F[_]: Monad](
+    brand: Brands[F]
+)
